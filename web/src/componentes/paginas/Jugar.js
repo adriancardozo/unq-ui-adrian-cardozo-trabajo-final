@@ -23,7 +23,7 @@ const Jugar = (props) => {
     <Modal className="modal-jugar">
       <div className="modal-body">
         <div className="container contenedor-modal-jugar">
-          <div className="row fila-modal-jugar">
+          <div className="row fila-modal-jugar fila-principal-modal-jugar">
             <div className="row align-items-start fila-modal-jugar">
               <div className="col-md-auto">
                 <Dados titulo="Dados elegidos" dados={ dados.elegidos } />
