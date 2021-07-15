@@ -3,7 +3,6 @@
   width: unset;
   height: auto;
 }
-
 .contenedor-dados {
   padding: 0.3em;
   width: 100%;
@@ -28,4 +27,14 @@
 
 .cuerpo-dados-vertical {
   width: 4em;
+}
+
+@media only screen and (max-width: 768px) {
+  .fila-dados {
+    width: max-content;
+  }
+  .cuerpo-dados-vertical {
+    width: auto;
+    height: 4em;
+  }
 }

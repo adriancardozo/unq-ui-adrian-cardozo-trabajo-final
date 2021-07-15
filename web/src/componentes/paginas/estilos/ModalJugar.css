@@ -30,3 +30,9 @@
 .fila-principal-modal-jugar {
   width: inherit;
 }
+
+@media only screen and (max-width: 768px) {
+  .columna-modal-jugar {
+    flex: 1 0 100%;
+  }
+}
