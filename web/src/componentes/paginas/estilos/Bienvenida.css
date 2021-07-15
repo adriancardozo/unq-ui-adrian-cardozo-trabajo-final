@@ -1,0 +1,8 @@
+.formulario-modal-bienvenida {
+  display: grid;
+  height: 100%;
+}
+
+.nombre-jugador-bienvenida {
+  width: 40%;
+}

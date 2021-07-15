@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Bienvenida from '../paginas/Bienvenida';
 import NoEncontrado from '../paginas/NoEncontrado';
 
@@ -10,7 +10,7 @@ const App = () => {
         <Route exact path="/" component={ Bienvenida } />
         <Route path="*" component={ NoEncontrado } />
       </Switch>
-  </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
