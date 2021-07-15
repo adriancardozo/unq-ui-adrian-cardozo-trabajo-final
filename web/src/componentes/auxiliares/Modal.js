@@ -37,7 +37,7 @@ const Modal = ({ alCerrar, className, children }) => {
   return(
     <>
       <div onClick={ cerrar } className={`modal fade modal-fade ${display} ${mostrarFade}`} aria-modal="true" role="dialog">
-        <div className={`${className ? className : ""} modal-dialog modal-dialog-scrollable modal-fullscreen-md-down modal-dialog-modal-fade`}>
+        <div className={`${className ? className : ""} modal-dialog modal-fullscreen-md-down modal-dialog-modal-fade`}>
           <div className="modal-content">
             { children }
           </div>

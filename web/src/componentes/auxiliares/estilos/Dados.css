@@ -1,0 +1,31 @@
+.dados {
+  padding: 0;
+  width: unset;
+  height: auto;
+}
+
+.contenedor-dados {
+  padding: 0.3em;
+  width: 100%;
+  height: 100%;
+}
+
+.columna-dados {
+  padding: 0;
+  width: auto;
+}
+
+.fila-dados {
+  --bs-gutter-x: 0;
+}
+
+.cuerpo-dados {
+  padding-top: 0;
+  padding-bottom: 0;
+  min-width: 4em;
+  min-height: 4em;
+}
+
+.cuerpo-dados-vertical {
+  width: 4em;
+}

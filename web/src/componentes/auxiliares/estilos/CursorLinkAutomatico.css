@@ -1,0 +1,7 @@
+.cursor-link {
+  width: max-content;
+}
+
+.cursor-link-activado {
+  cursor: pointer;
+}

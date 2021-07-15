@@ -1,0 +1,28 @@
+
+@media only screen and (min-width: 768px) {
+  .modal-jugar {
+    min-height: 500px;
+    max-width: unset;
+    width: 80%;
+    height: 80%;
+    display: flex;
+  }
+
+  .boton-tirar-los-dados {
+    width: 40%;
+  }
+}
+
+.titulo-dados {
+  width: max-content;
+}
+
+.contenedor-modal-jugar {
+  display: flex;
+  height: 100%;
+}
+
+.fila-modal-jugar {
+  margin-right: 0;
+  margin-left: 0;
+}
