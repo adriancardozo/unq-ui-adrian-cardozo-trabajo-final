@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './estilos/Modal.css'
 
-const Modal = ({ alCerrar, className, children }) => {
+const Modal = ({ backdrop, alCerrar, className, children }) => {
   const [mostrarFade, setMostrarFade] = useState("");
   const [display, setDisplay] = useState("modal-fade-bloque")
   const producirFadeApertura = () => {
@@ -30,6 +30,7 @@ const Modal = ({ alCerrar, className, children }) => {
 
   const cerrar = (e) => {
     if(e.target.classList.contains(`ocultador-modal`)){
+      e.stopPropagation()
       setEfecto({ callback: producirFadeCierre })
     }
   }
@@ -43,6 +44,7 @@ const Modal = ({ alCerrar, className, children }) => {
           </div>
         </div>
       </div>
+      {backdrop && <div className={`modal-backdrop fade ${display} ${mostrarFade}`}></div>}
     </>
   );
 }

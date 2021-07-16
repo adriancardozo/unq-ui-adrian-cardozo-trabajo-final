@@ -9,8 +9,12 @@
   }
 
   .boton-tirar-los-dados {
-    width: 40%;
+    width: 100%;
   }
+}
+
+.boton-tirar-los-dados {
+  margin-top: 0.3em;
 }
 
 .titulo-dados {
