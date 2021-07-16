@@ -25,9 +25,14 @@ const Jugar = (props) => {
   const [claseHabilitado, setClaseHabilitado] = useState("")
   const [termino, setTermino] = useState(false)
   const [seleccionarCategoria, setSeleccionarCategoria] = useState(false)
+  const [elegirDados, setElegirDados] = useState(false)
 
   const elegirDado = (dadoElegido) => {
-    setDados({ elegidos: [...dados.elegidos, dadoElegido], tarro: dados.tarro.filter(dado => dado.id !== dadoElegido.id) })
+    const dadosActualizados = { elegidos: [...dados.elegidos, dadoElegido], tarro: dados.tarro.filter(dado => dado.id !== dadoElegido.id) }
+    setDados(dadosActualizados)
+    if(dadosActualizados.tarro.length === 0){
+      seleccionarCategoriaNumero(dados)
+    }
   }
 
   const aleatorio = () => Math.floor(Math.random() * 6) + 1
@@ -37,6 +42,11 @@ const Jugar = (props) => {
   const terminar = () => {
     setClaseHabilitado("disabled")
     setTermino(true)
+  }
+
+  const resetearDados = () => {
+    setDados({ elegidos: [], tarro: [{id: 1, numero: 1}, {id: 2, numero: 2}, {id: 3, numero: 3}, {id: 4, numero: 4}, {id: 5, numero: 5}] })
+    setElegirDados(false)
   }
 
   const actualizarTurno = () => {
@@ -116,6 +126,8 @@ const Jugar = (props) => {
   const anotarPuntosCategoriaNumero = (categoria) => {
     const puntos = obtenerDados(dados).filter(dado => dado.numero === (parseInt(categoria.categoria))).length * parseInt(categoria.categoria)
     setPuntajes(puntajes.map(puntaje => puntaje.categoria === categoria.categoria ? { ...puntaje, puntos } : puntaje))
+    resetearTurno(turno)
+    resetearDados()
   }
 
   const anotarPuntos = (juego) => {
@@ -123,7 +135,13 @@ const Jugar = (props) => {
   }
 
   const seleccionarCategoriaNumero = (dados) => {
-    setSeleccionarCategoria(true)
+    if(categoriasNumeroAbiertas().length > 0){
+      setSeleccionarCategoria(true)
+    }
+    else {
+      resetearTurno(turno)
+      resetearDados()
+    }
   }
 
   const resetearTurno = (turnoAnterior) => {
@@ -141,19 +159,22 @@ const Jugar = (props) => {
     if(juego){
       anotarPuntos(juego)
       resetearTurno(turnoAnterior)
+      resetearDados()
     }
     else if(turnoAnterior.tiradas === 2){
       seleccionarCategoriaNumero(dados)
+    } 
+    else {
+      actualizarTurno(turnoAnterior)
     }
   }
 
   const tirarDados = () => {
+    setElegirDados(true)
     const numerosAleatorios = aleatorios(dados.tarro.length)
     const dadosActualizados = { ...dados, tarro: dados.tarro.map((dado, i) => ( { ...dado, numero: numerosAleatorios[i] } ))}
     setDados(dadosActualizados)
-    const turnoAnterior = turno
-    actualizarTurno()
-    terminarTirada(obtenerDados(dadosActualizados), turnoAnterior)
+    terminarTirada(obtenerDados(dadosActualizados), turno)
   }
 
   const obtenerDados = (dados) => {
@@ -163,7 +184,7 @@ const Jugar = (props) => {
   return(
     <>
     <Modal className="modal-jugar">
-    {seleccionarCategoria && <ModalSeleccionCategoria dados={ obtenerDados(dados)} alClickearCategoria={ anotarPuntosCategoriaNumero } categorias={categoriasNumeroAbiertas()}></ModalSeleccionCategoria>}
+    {seleccionarCategoria && <ModalSeleccionCategoria dados={ obtenerDados(dados)} alClickearCategoria={ anotarPuntosCategoriaNumero } categorias={categoriasNumeroAbiertas()} alCerrar={ () => setSeleccionarCategoria(false) }></ModalSeleccionCategoria>}
       <div className="modal-body">
         <div className="container contenedor-modal-jugar">
           <div className="row fila-modal-jugar fila-principal-modal-jugar">
@@ -175,7 +196,7 @@ const Jugar = (props) => {
             <div className="col columna-modal-jugar">
               <div className="row align-items-center fila-modal-jugar"></div>
               <div className="row justify-content-center align-items-end fila-modal-jugar">
-                <Dados titulo="Dados en el tarro" horizontal={true} alClickearDado={ elegirDado } dados={ dados.tarro } />
+                <Dados titulo="Dados en el tarro" horizontal={true} {...(elegirDados ? { alClickearDado: elegirDado } : {}) } dados={ dados.tarro } />
                 <div className="row justify-content-center">
                   <button onClick={ tirarDados } className={`btn btn-success ${claseHabilitado} boton-tirar-los-dados`}>Tirar los dados</button>
                 </div>

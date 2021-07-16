@@ -4,9 +4,9 @@ import Dados from './Dados';
 import Modal from './Modal';
 import OcultadorModal from './OcultadorModal';
 
-const ModalSeleccionCategoria = ({ dados, categorias, alClickearCategoria }) => {
+const ModalSeleccionCategoria = ({ dados, categorias, alClickearCategoria, alCerrar }) => {
   return(
-    <Modal backdrop={true}>
+    <Modal backdrop={true} alCerrar={alCerrar}>
       <div className="modal-header">
         <h5 className="modal-title">Seleccionar Categoría</h5>
       </div>
