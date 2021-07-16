@@ -9,7 +9,7 @@ const Bienvenida = (props) => {
   const irAJugar = () =>  {
     props.history.push(`/jugar/${nombreJugador ? nombreJugador : "Jugador"}`)
   }
-  console.log(nombreJugador)
+  
   return(
     <Modal alCerrar={ irAJugar }>
       <div className="modal-header justify-content-center">

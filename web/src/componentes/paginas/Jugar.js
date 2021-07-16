@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router';
 import Dados from '../auxiliares/Dados';
 import Modal from '../auxiliares/Modal';
+import ModalResultados from '../auxiliares/ModalResultados';
 import ModalSeleccionCategoria from '../auxiliares/ModalSeleccionCategoria';
 import TablaPuntajes from '../auxiliares/TablaPuntajes';
 import './estilos/ModalJugar.css'
@@ -185,6 +186,7 @@ const Jugar = (props) => {
     <>
     <Modal className="modal-jugar">
     {seleccionarCategoria && <ModalSeleccionCategoria dados={ obtenerDados(dados)} alClickearCategoria={ anotarPuntosCategoriaNumero } categorias={categoriasNumeroAbiertas()} alCerrar={ () => setSeleccionarCategoria(false) }></ModalSeleccionCategoria>}
+    {termino && <ModalResultados nombreUsuario={nombre} puntajes={ puntajes } alCerrar={() => props.history.push('/') }/>}
       <div className="modal-body">
         <div className="container contenedor-modal-jugar">
           <div className="row fila-modal-jugar fila-principal-modal-jugar">
